@@ -18,6 +18,6 @@ interface RecordDao {
     @Query("DELETE FROM record_table")
     fun delteAllRecords()
 
-    @Query("SELECT * FROM record_table ORDER BY date ASC")
+    @Query("SELECT * FROM record_table ORDER BY date DESC")
     fun getALLRecords(): LiveData<List<Record>>
 }

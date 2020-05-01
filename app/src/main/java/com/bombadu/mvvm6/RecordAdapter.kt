@@ -9,6 +9,18 @@ import com.bombadu.mvvm6.db.Record
 
 class RecordAdapter : RecyclerView.Adapter<RecordAdapter.RecordHolder>() {
     private var records: List<Record> = ArrayList()
+    private var itemClickCallback: ItemClickCallback? = null
+    var onItemClick: ((pos: Int, view: View) -> Unit)? = null
+
+
+    internal interface ItemClickCallback {
+        fun onItemClick(p: Int)
+    }
+
+    internal fun setItemClickCallback (inItemClickCallback: ItemClickCallback){
+        this.itemClickCallback = inItemClickCallback
+
+    }
 
 
 
@@ -40,7 +52,18 @@ class RecordAdapter : RecyclerView.Adapter<RecordAdapter.RecordHolder>() {
     }
 
 
-    inner class RecordHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RecordHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    View.OnClickListener{
+
+        override fun onClick(v: View?) {
+            if (v != null) {
+                onItemClick?.invoke(adapterPosition, v)
+            }
+        }
+
+        init {
+            itemView.setOnClickListener(this)
+        }
 
         var textViewDate: TextView = itemView.findViewById(R.id.date_text_view)
         var textViewWeight: TextView = itemView.findViewById(R.id.weight_text_view)

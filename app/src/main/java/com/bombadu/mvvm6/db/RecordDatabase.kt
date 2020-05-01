@@ -20,20 +20,20 @@ abstract class RecordDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { recordDatabase ->
                 scope.launch {
-                    populateDatabase(recordDatabase.recordDao())
+                    //populateDatabase(recordDatabase.recordDao())
                 }
             }
         }
 
 
-        fun populateDatabase(recordDao: RecordDao) {
+        /*fun populateDatabase(recordDao: RecordDao) {
             val thread = Thread {
                 val myRecord = Record("4-26", 244, 10)
                 recordDao.insertRecord(myRecord)
             }
             thread.start()
 
-        }
+        }*/
 
     }
 

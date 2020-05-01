@@ -53,7 +53,7 @@ class RecordRepository(private val recordDao: RecordDao) {
 
     private class  DeleteRecordAsyncTask(val recordDao: RecordDao) : AsyncTask<Record, Unit, Unit>(){
         override fun doInBackground(vararg record: Record?) {
-            recordDao.insertRecord(record[0]!!)
+            recordDao.deleteRecord(record[0]!!)
         }
 
     }
@@ -61,7 +61,7 @@ class RecordRepository(private val recordDao: RecordDao) {
 
     private class  UpdateRecordAsyncTask(val recordDao: RecordDao) : AsyncTask<Record, Unit, Unit>(){
         override fun doInBackground(vararg record: Record?) {
-            recordDao.insertRecord(record[0]!!)
+            recordDao.updateRecord(record[0]!!)
         }
 
     }
